@@ -1,0 +1,91 @@
+swagger: "2.0"
+info:
+  description: "This is a document about [aes-encryption](https://aes-encryption.glitch.me) api."
+  version: "1.0.0"
+  title: "Swagger Petstore"
+  termsOfService: "http://swagger.io/terms/"
+  contact:
+    email: "YA-androidapp@users.noreply.github.com"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "aes-encryption.glitch.me"
+basePath: "/"
+tags:
+- name: "aes"
+  description: "Everything about AES encryption"
+schemes:
+- "https"
+paths:
+  /dec:
+    post:
+      tags:
+      - "aes"
+      summary: "Decrypt message"
+      description: ""
+      operationId: "dec"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Some parameters and message to encrypt"
+        required: true
+        schema:
+          $ref: "#/definitions/DecData"
+      responses:
+        "405":
+          description: "Invalid input"
+
+  /enc:
+    post:
+      tags:
+      - "aes"
+      summary: "Encrypt message"
+      description: ""
+      operationId: "enc"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Some parameters and message to encrypt"
+        required: true
+        schema:
+          $ref: "#/definitions/EncData"
+      responses:
+        "405":
+          description: "Invalid input"
+
+definitions:
+  EncData:
+    type: "object"
+    properties:
+      password:
+        type: "string"
+      salt:
+        type: "string"
+      plaintext:
+        type: "string"
+    xml:
+      name: "EncData"
+  DecData:
+    type: "object"
+    properties:
+      password:
+        type: "string"
+      salt:
+        type: "string"
+      iv:
+        type: "string"
+      encrypted:
+        type: "string"
+    xml:
+      name: "Category"
+externalDocs:
+  description: "Find out more about Swagger"
+  url: "http://swagger.io"
